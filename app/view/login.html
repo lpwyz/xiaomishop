@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>用户登录</title>
+	<link rel="stylesheet" href="/public/admin/css/login.css">
+</head>
+<body>
+<div class="container">
+        <div id="login">
+                <form action="/admin/doLogin" method="post"  >
+                    <input type="hidden" name="_csrf" value="<%=csrf%>">
+                    <div class="l_title">mishop后台管理系统</div>
+                    <dl>
+                        <dd>管理员姓名：<input class="text" type="text" name="username" id="username"></dd>
+                        <dd>管理员密码：<input class="text" type="password" name="password" id="password"></dd>
+                        <dd>验　证　码：<input id="verify" type="text" name="verify">
+                            <img id="verify_img" src="/admin/verify" title="看不清？点击刷新" onclick="javascript:this.src='/admin/verify?mt='+Math.random()">
+                         </dd>
+                        <dd><input id="submit"  type="submit" class="submit" name="dosubmit" value=""></dd>
+                    </dl>
+                </form>
+            </div>
+</div>
+
+</body>
+</html>

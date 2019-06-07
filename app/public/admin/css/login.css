@@ -1,0 +1,80 @@
+/*
+// | MobileCms 移动应用软件后台管理系统
+// +----------------------------------------------------------------------
+// | provide by ：59miao.com
+// 
+// +----------------------------------------------------------------------
+// | Author: htzhanglong@foxmail.com
+// +----------------------------------------------------------------------
+*/
+@CHARSET "UTF-8";
+body {
+	background:#01458E;
+}
+#login {
+	width:740px;
+	height:300px;
+	background:url(../images/loginbg.jpg) no-repeat left center;
+	/*background:#EDEFFC;*/
+	margin:120px auto 0 auto;
+}
+#login dl{
+	width:500px;
+	margin:0 0 0 auto;
+	padding:10px 0 0 20px;
+	color:#01458E;
+	float:left;
+	font-size:15px;
+}
+#login dl dd {
+	margin:16px 0;
+	height:32px;
+	line-height:32px;
+}
+#login dl dd input.text {
+	width:280px;
+	height:30px;
+	line-height:30px;
+	
+}
+#login dl dd input.submit {
+	background: url("../images/login_btn.jpg") no-repeat center center;
+    border:none;
+    margin: 10px;
+	margin-left:90px;
+    padding: 2px 8px 0;
+	cursor:pointer;
+	width:123px;
+	height:29px;
+}
+#login dl dd.code {
+	padding:0 0 0 72px;
+}
+#login dl dd.code img {
+	border:1px solid #eee;
+	cursor:pointer;
+}
+#verify{	
+	height:30px;
+	line-height:30px;	  
+    width: 90px;
+	margin-right:3px;
+}
+#verify_img{
+	cursor:pointer;
+    position: relative;
+    top:12px;
+}
+.text{
+	height:22px;
+}
+.l_title{
+	height:40px;
+	line-height:40px;
+	font-size:24px;
+	padding-left:5px;
+	padding-top:10px;
+	color:#01458e;
+	font-weight:bold;
+	
+}
