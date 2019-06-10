@@ -6,8 +6,7 @@ class ManagerController extends BaseController {
     /*  用户 角色表  关联查询 */
     const list=await ctx.model.Admin.Admin.aggregate([
       {
-        $lookup:
-          {
+        $lookup: {
             from: "role",
             localField: "role_id",
             foreignField: "_id",

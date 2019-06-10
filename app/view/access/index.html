@@ -1,0 +1,80 @@
+<%- include ../public/page_head.html %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            <%- include ../public/page_aside.html %>
+        </div>
+        <div class="col-sm-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    搜索角色
+                </div>
+                <div class="panel-body">
+                    <form role="form" class="form-inline">
+                        <div class="form-group">
+                            <label for="name">名称</label>
+                            <input type="text" class="form-control" id="name" placeholder="请输入名称">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">开始搜索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--
+                列表展示
+            -->
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                <thead>
+                        <tr>
+                            <th>模块名称</th>
+                            <th>节点类型</th>
+                            <th>操作名称</th>
+                            <th>操作地址</th>
+                            <th>排序</th>
+                            <th>描述</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0;i<list.length;i++){%>
+                        <tr style="color: brown">
+                        <td><%=list[i].module_name%></td>
+                            <td><%if(list[i].type==1){%> 模块
+                                <%}else if(list[i].type==2){%> 菜单
+                                <%}else{%> 操作 <%}%>
+                            </td>
+                        <td><%=list[i].action_name%></td>
+                        <td><%=list[i].url%></td>
+                        <td><%=list[i].sort%></td>
+                        <td><%=list[i].description%></td>
+                            <td class="text-center"><a class="btn btn-success"  href="/admin/access/edit?_id=<%=list[i]._id%>" >修改</a>
+                            </td>
+                        <% for(var j=0;j<list[i].items.length;j++){%>
+                            <tr style="color: green;text-align: center">
+                              <td><%=list[i].items[j].module_name%></td>
+                              <td><%if(list[i].items[j].type==1){%> 模块
+                                <%}else if(list[i].items[j].type==2){%> 菜单
+                                <%}else{%> 操作 <%}%>
+                              </td>
+                            <td><%=list[i].items[j].action_name%></td>
+                            <td><%=list[i].items[j].url%></td>
+                            <td><%=list[i].items[j].sort%></td>
+                            <td><%=list[i].items[j].description%></td>
+                            <td class="text-center"><a class="btn btn-success" href="/admin/access/edit?_id=<%=list[i].items[j]._id%>">修改</a>
+                                <a class="btn btn-danger"  href="/admin/delete?_id=<%=list[i].items[j]._id%>&data=Access">删除</a>
+                            </td>
+                        </tr>
+                        <% } %>
+
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
