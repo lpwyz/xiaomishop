@@ -25,7 +25,10 @@
                         <td><%=list[i].title%></td>
                         <td><%=list[i].description%></td>
                         <td><%=list[i].add_time%></td>
-                        <td class="text-center"> <a class="btn btn-success" href="/admin/role/edit?_id=<%=list[i]._id%>">修改</a>　<a class="btn btn-danger" href="/admin/delete?_id=<%=list[i]._id%>&data=Role">删除</a></td>
+                        <td class="text-center">
+                            <a class="btn btn-info" href="/admin/role/auth?_id=<%=list[i]._id%>">授权</a>
+                            <a class="btn btn-success" href="/admin/role/edit?_id=<%=list[i]._id%>">修改</a>
+                        </td>    　
                     </tr>
                     <%}%>
                     </tbody>

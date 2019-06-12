@@ -33,6 +33,7 @@
                         <th>用户姓名</th>
                         <th>用户电话</th>
                         <th>用户邮箱</th>
+                        <th>添加时间</th>
                         <th>用户角色</th>
                         <th class="text-center">操作</th>
                     </tr>
@@ -44,6 +45,7 @@
                         <td><%=list[i].username%></td>
                         <td><%=list[i].mobile%></td>
                         <td><%=list[i].email%></td>
+                        <td><%=list[i].add_time%></td>
                         <td><%=list[i].role[0].title%></td>
                         <td class="text-center"><a class="btn btn-success" href="/admin/manager/edit?_id=<%=list[i]._id%>">修改</a>
                             <a class="btn btn-danger" href="/admin/delete?_id=<%=list[i]._id%>&data=Admin">删除</a>
