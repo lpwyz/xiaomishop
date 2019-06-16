@@ -1,13 +1,13 @@
 # xiaomishop
 
-基于node的阿里开发的强化版koa框架的egg框架， 数据库采用的是mongodb使用的数据库库是mongoose，前端采用的是简单易上手的ejs模板引擎，
+web框架采用的是当前node社区流行的koa框架的加强版，阿里开发的egg框架， 数据库采用的是mongodb 使用的数据库库是mongoose，前端采用的是简单易上手的ejs模板引擎，
 感兴趣的朋友可以把ejs，改成当下流行的vue,react或者angular哦。
 
+项目的功能列表在项目的：
 
+app/public/admin/egg_project
 
 ## QuickStart
-
-
 1：下载源码到idea工具比如Webstorm
 
 2: 安装package.json对应的依赖模块
