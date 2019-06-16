@@ -11,6 +11,7 @@
     "egg-mongoose": "^3.2.0",
     "egg-scripts": "^2.11.0",
     "egg-view-ejs": "^2.0.0",
+    "silly-datetime": "^0.1.2",
     "svg-captcha": "^1.4.0"
   },
   "devDependencies": {

@@ -62,8 +62,9 @@
                             <td><%=list[i].items[j].url%></td>
                             <td><%=list[i].items[j].sort%></td>
                             <td><%=list[i].items[j].description%></td>
-                            <td class="text-center"><a class="btn btn-success" href="/admin/access/edit?_id=<%=list[i].items[j]._id%>">修改</a>
-                                <a class="btn btn-danger"  href="/admin/delete?_id=<%=list[i].items[j]._id%>&data=Access">删除</a>
+                            <td class="text-center">
+                                <a class="btn btn-success" href="/admin/access/edit?_id=<%=list[i].items[j]._id%>">修改</a>
+                                <a class="btn btn-danger"   href="/admin/delete?_id=<%=list[i].items[j]._id%>&data=Access">删除</a>
                             </td>
                         </tr>
                         <% } %>

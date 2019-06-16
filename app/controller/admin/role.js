@@ -60,8 +60,8 @@ class RoleController extends BaseController {
        const result=await ctx.model.Admin.RoleAccess.find({"role_id":_id});
        const access_ids=[];
        result.forEach((vaule)=>{
-             access_ids.push(vaule.access_id.toString())
-       });
+       access_ids.push(vaule.access_id.toString())
+    });
        /* 循环遍历所有的权限数据  判断当前权限是否在角色权限的数组中*/
        for (var i=0;i<list.length;i++){
            if (access_ids.indexOf(list[i]._id.toString())!=-1){

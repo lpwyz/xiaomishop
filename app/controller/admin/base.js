@@ -33,5 +33,37 @@ class BaseController extends Controller {
     ctx.response.type = 'image/svg+xml';  /* 返回的生成的验证码的格式 */
     ctx.body=captcha.data;  /* 给页面返回一张图片 */
   }
+  async changeStatus(){
+    const {ctx}=this;
+    /* 1:要修改的数据库表model
+       2:更新的属性
+       3:要修改的id
+    * */
+    const model=ctx.request.query.model;
+    const attr=ctx.request.query.attr;
+    const id=ctx.request.query.id;
+    const result=await ctx.model.Admin[model].find({"_id":id});
+    if(result.length>0){
+      if(result[0][attr]==1){
+        var json={/*es6 属性名表达式*/
+          [attr]:0
+        }
+      }else{
+        var json={
+          [attr]:1
+        }
+      }
+      //执行更新操作
+      var updateResult=await this.ctx.model.Admin[model].updateOne({"_id":id},json);
+      if(updateResult){
+        this.ctx.body={"message":'更新成功',"success":true};
+      }else{
+        this.ctx.body={"message":'更新失败',"success":false};
+      }
+    }else{
+      //接口
+      this.ctx.body={"message":'更新失败,参数错误',"success":false};
+    }
+  }
 }
 module.exports = BaseController;

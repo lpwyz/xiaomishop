@@ -25,7 +25,7 @@ class ManagerController extends BaseController {
     const { ctx } = this;
     const content=ctx.request.body;
     const username=ctx.request.body.username;
-    const u=ctx.model.Admin.Admin.find({username});
+    const u=await ctx.model.Admin.Admin.find({username});
     /*  判断用户名是否存在 */
     if (u.length>0){
       await this.error('/admin/manager/add',"添加失败，用户名已存在");

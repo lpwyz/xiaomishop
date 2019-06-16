@@ -1,12 +1,10 @@
 <%- include ../public/page_head.html%>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
             <%- include ../public/page_aside.html%>
         </div>
         <div class="col-sm-10">
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                 </div>
@@ -35,6 +33,7 @@
                         <th>用户邮箱</th>
                         <th>添加时间</th>
                         <th>用户角色</th>
+                        <th>状态</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
@@ -47,6 +46,13 @@
                         <td><%=list[i].email%></td>
                         <td><%=list[i].add_time%></td>
                         <td><%=list[i].role[0].title%></td>
+                        <td  class="text-center">
+                            <%if(list[i].status==1){%>
+                            <img src="/public/admin/images/yes.gif" onclick="app.changeStatus(this,'Admin','status','<%=list[i]._id%>')" />
+                            <%}else{%>
+                            <img src="/public/admin/images/no.gif"  onclick="app.changeStatus(this,'Admin','status','<%=list[i]._id%>')" />
+                            <%}%>
+                        </td>
                         <td class="text-center"><a class="btn btn-success" href="/admin/manager/edit?_id=<%=list[i]._id%>">修改</a>
                             <a class="btn btn-danger" href="/admin/delete?_id=<%=list[i]._id%>&data=Admin">删除</a>
                         </td>

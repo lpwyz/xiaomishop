@@ -13,8 +13,8 @@ module.exports = options => {
       if (auth){
         await  next();
       }else {
-        ctx.body='对不起，您没有权限，请向管理员申请';
-      }
+        await  ctx.render('public/no_auth');
+    }
     } else {
       /*排除不需要做权限判断的地址*/
       if (path=='/admin/doLogin'||path=='/admin/login'||path=='/admin/verify') {

@@ -16,6 +16,7 @@ module.exports = appInfo => {
   config.adminauth={
      match: '/admin',   /* 指定路由的中间件 */
   };
+  config.uploadDir='app/public/admin/upload/';
   config.session={
     key: 'EGG_SESS',
     maxAge: 24 * 3600 * 1000, // 1 天

@@ -13,9 +13,8 @@ class AdminService extends Service {
     var userinfo = this.ctx.session.userinfo;
     var role_id = userinfo.role_id;
     var pathname = url.parse(this.ctx.request.url).pathname;         //获取当前用户访问的地址
-    console.log(pathname);
     /* 忽略权限判断的地址 is_super 超级管理员*/
-    const ignoreUrl = ['/admin/doLogin', '/admin/login', '/admin/verify', 'admin/logOut'];
+    var ignoreUrl = ['/admin/doLogin', '/admin/login', '/admin/verify', '/admin/logOut'];
     if (ignoreUrl.indexOf(pathname) != -1 || userinfo.is_super == 1) {
       return true;   //允许访问
     }
@@ -27,7 +26,6 @@ class AdminService extends Service {
     });
     /*获取当前访问的url 对应的权限id*/
     var accessUrlResult = await this.ctx.model.Admin.Access.find({ "url": pathname });
-    console.log(accessResult);
     /*判断当前访问的url对应的权限id 是否在权限列表中的id中*/
     if (accessUrlResult.length > 0) {
       if (accessArray.indexOf(accessUrlResult[0]._id.toString()) != -1) {
