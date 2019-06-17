@@ -1,10 +1,5 @@
 <%- include ../public/page_head.html %>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2">
-            <%- include ../public/page_aside.html %>
-        </div>
-        <div class="col-sm-10">
             <!--
                 列表展示
             -->
@@ -24,7 +19,7 @@
                     <tr>
                         <td><%=list[i].title%></td>
                         <td><%=list[i].description%></td>
-                        <td><%=list[i].add_time%></td>
+                        <td><%=helper.getTime(list[i].add_time)%></td>
                         <td class="text-center">
                             <a class="btn btn-info" href="/admin/role/auth?_id=<%=list[i]._id%>">授权</a>
                             <a class="btn btn-success" href="/admin/role/edit?_id=<%=list[i]._id%>">修改</a>
@@ -34,10 +29,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
-    </div>
-</div>
-
 </body>
 </html>

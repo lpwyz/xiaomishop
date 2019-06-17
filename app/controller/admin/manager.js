@@ -50,8 +50,14 @@ class ManagerController extends BaseController {
   async doEdit() {
     const { ctx } = this;
     const manager=ctx.request.body;
-    console.log(manager);
-    await ctx.model.Admin.Admin.updateOne({_id:manager._id},manager);
+    /* 用户名没有修改密码*/
+    if (manager.password){
+      manager.password=await ctx.service.tools.md5(manager.password);
+      await ctx.model.Admin.Admin.updateOne({_id:manager._id},manager);
+    }else {
+      delete manager.password; /* 删除传过来对象的密码属性*/
+      await ctx.model.Admin.Admin.updateOne({_id:manager._id},manager);
+    }
     await this.success('/admin/manager','修改用户信息成功');
   }
 }

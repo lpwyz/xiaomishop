@@ -1,10 +1,5 @@
 <%- include ../public/page_head.html %>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2">
-            <%- include ../public/page_aside.html %>
-        </div>
-        <div class="col-sm-10">
             <div class="panel panel-default">
                     <div class="panel-heading">
                         轮播图列表
@@ -21,6 +16,7 @@
                                 <th>分类</th>
                                 <th>图片</th>
                                 <th>跳转地址</th>
+                                <th>顺序</th>
                                 <th class="text-center">状态</th>
                                 <th class="text-center">操作</th>
                             </tr>
@@ -40,6 +36,7 @@
                                 </td>
                                 <td><img src="<%=list[i].focus_img%>" style="width: 120px"></td>
                                 <td><%=list[i].link%></td>
+                                <td><span onclick="app.editNum(this,'Focus','sort','<%=list[i]._id%>')"><%=list[i].sort %></span></td>
                                 <td  class="text-center">
                                     <%if(list[i].status==1){%>
                                     <img src="/public/admin/images/yes.gif" onclick="app.changeStatus(this,'Focus','status','<%=list[i]._id%>')" />
@@ -58,8 +55,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
 </body>
 </html>

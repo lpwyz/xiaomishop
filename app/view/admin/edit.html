@@ -1,10 +1,5 @@
 <%- include ../public/page_head.html %>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2">
-            <%- include ../public/page_aside.html %>
-        </div>
-        <div class="col-sm-10">
             <div class="panel panel-default">
 			    <div class="panel-heading">
                   修改管理员
@@ -16,6 +11,8 @@
                             <input type="hidden" name="_id" value="<%=manager[0]._id%>"/>
                             <ul>
                                 <li>  管理员名称: <input type="text" name="username" value="<%=manager[0].username%>"/></li><br/>
+<!--                                <li>  原始密码:<input type="text" name="password"  onblur="app.chechPwd(this,'Admin','password','<%=manager[0]._id%>')" /></li><br/>-->
+                                <li>  管理员密码:<input type="text" name="password"   /></li><br/>
                                 <li>  管理员电话: <input type="text" name="mobile"   value="<%=manager[0].mobile%>" /></li><br/>
                                 <li>  管理员邮箱: <input type="text" name="email"    value="<%=manager[0].email%>"/></li><br/>
                                 <li>  管理员角色:
@@ -37,13 +34,7 @@
                         </form>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-    </div>
-</div>
-
 </body>
 </html>

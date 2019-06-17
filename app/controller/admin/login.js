@@ -22,7 +22,7 @@ class LoginController extends BaseController {
                 /*    1:创建用户session 2: 跳转到用户页面
                 */
                 ctx.session.userinfo=res[0];
-                await ctx.redirect('/admin/manager');
+                await ctx.redirect('/admin');
             }else {
                 await this.error('/admin/login','账号密码输入错误!!!')
             }

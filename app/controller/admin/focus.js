@@ -51,6 +51,10 @@ class FocusController extends Controller {
     let stream;
     while ((stream = await parts()) != null) {
       if (!stream.filename) {
+        //修改操作
+        var ids=parts.field._id;
+        var updateResult=parts.field;
+        await ctx.model.Admin.Focus.updateOne({"_id":ids},updateResult);
         break;
       }
       let fieldname = stream.fieldname;  //file表单的名字
@@ -61,23 +65,23 @@ class FocusController extends Controller {
       await pump(stream, writeStream);
       files=Object.assign(files,{
         [fieldname]:dir.saveDir
-      })
+      });
+      //修改操作
+      var id=parts.field._id;
+      /* 修改了图片需要把原来的图片删除*/
+      const res=await ctx.model.Admin.Focus.find({"_id":id});
+      const oldpath=res[0].focus_img;
+      const oldpathinapp=path.join('app'+oldpath);
+      fs.unlink(oldpathinapp,(err,data)=>{
+        if(err){
+          console.log('删除失败');
+        }else {
+          console.log('删除成功');
+        }
+      });
+      var updateResult=Object.assign(files,parts.field);
+      await ctx.model.Admin.Focus.updateOne({"_id":id},updateResult);
     }
-    //修改操作
-    var id=parts.field._id;
-    /* 修改了图片需要把原来的图片删除*/
-    const res=await ctx.model.Admin.Focus.find({"_id":id});
-    const oldpath=res[0].focus_img;
-    const oldpathinapp=path.join('app'+oldpath);
-    fs.unlink(oldpathinapp,(err,data)=>{
-          if(err){
-            console.log('删除失败');
-          }else {
-            console.log('删除成功');
-          }
-    });
-    var updateResult=Object.assign(files,parts.field);
-    let result =await ctx.model.Admin.Focus.updateOne({"_id":id},updateResult);
     await this.success('/admin/focus','修改轮播图成功');
   }
 }
