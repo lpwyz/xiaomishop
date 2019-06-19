@@ -21,8 +21,6 @@ module.exports = app => {
   /* ajax 改变 属性数量*/
   router.get('/admin/editNum', controller.admin.base.editNum);
 
-
-
   router.get('/admin/manager', controller.admin.manager.index);
   router.get('/admin/manager/add', controller.admin.manager.add);
   router.post('/admin/manager/doAdd', controller.admin.manager.doAdd);
@@ -49,6 +47,13 @@ module.exports = app => {
   router.post('/admin/focus/doAdd', controller.admin.focus.doAdd);
   router.get('/admin/focus/edit', controller.admin.focus.edit);
   router.post('/admin/focus/doEdit', controller.admin.focus.doEdit);
+
+  //商品类型
+  router.get('/admin/goodsType', controller.admin.goodsType.index);
+  router.get('/admin/goodsType/add', controller.admin.goodsType.add);
+  router.get('/admin/goodsType/edit', controller.admin.goodsType.edit);
+  router.post('/admin/goodsType/doEdit', controller.admin.goodsType.doEdit);
+  router.post('/admin/goodsType/doAdd', controller.admin.goodsType.doAdd);
 
 
 

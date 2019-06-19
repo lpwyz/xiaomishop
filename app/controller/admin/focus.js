@@ -35,7 +35,7 @@ class FocusController extends Controller {
        let f=new ctx.model.Admin.Focus(Object.assign(files,parts.field));
        f.save();
      }
-     await this.success('/admin/focus','轮播图添加成功');
+    await this.success('/admin/focus','轮播图添加成功');
   }
   async edit(){
      const  {ctx}=this;

@@ -1,0 +1,45 @@
+<%- include ../public/page_head.html %>
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="/admin/goodsType/add" class="btn btn-primary">增加商品类型</a>
+                    </div>
+                    <div class="panel-body">
+            <!--
+                列表展示
+            -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr class="th">
+                                <th>商品类型名称</th>
+                                <th>描述</th>
+                                <th>增加时间</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <%for(var i=0;i<list.length;i++){%>
+                                    <tr>
+                                            <td><%=list[i].title%></td>
+                                            <td><%=list[i].description%></td>
+                                            <td><%=helper.getTime(list[i].add_time)%></td>
+                                            <td  class="text-center">
+                                                    <%if(list[i].status==1){%>
+                                                            <img src="/public/admin/images/yes.gif" onclick="app.changeStatus(this,'GoodsType','status','<%=list[i]._id%>')" />
+                                                    <%}else{%>
+                                                            <img src="/public/admin/images/no.gif" onclick="app.changeStatus(this,'GoodsType','status','<%=list[i]._id%>')" />
+                                                    <%}%>
+                                            </td>
+                                            <td class="text-center"><a href="/admin/goodsTypeAttribute?id=<%=list[i]._id%>">属性列表</a>　<a href="/admin/goodsType/edit?id=<%=list[i]._id%>">修改</a>　<a  class="delete" href="/admin/delete?model=GoodsType&id=<%=list[i]._id%>">删除</a></td>
+                                        </tr>
+                            <%}%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+</body>
+</html>

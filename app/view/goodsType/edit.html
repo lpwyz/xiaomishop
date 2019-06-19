@@ -1,0 +1,30 @@
+<%- include ../public/page_head.html %>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            修改商品类型
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive input-form">
+                <form action="/admin/goodsType/doEdit" method="post">
+                    <ul>
+                        <input type="hidden" name="_csrf" value="<%=csrf%>">
+                        <input type="hidden" name="_id" value="<%=list._id%>">
+                        <li>  商品类型名称: <input type="text" name="title" value="<%=list.title%>"/></li>
+                        <li>
+                            商品类型描述:
+                            <textarea name="description" id="" cols="60" rows="8"><%=list.description%></textarea>
+                        </li>
+                        <li>
+                            <br/>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+</html>
