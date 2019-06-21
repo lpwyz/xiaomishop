@@ -1,7 +1,7 @@
 <%- include ../public/page_head.html %>
             <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="/admin/goodsType/add" class="btn btn-primary">增加商品类型</a>
+                        <span>商品类型</span> <a href="/admin/goodsType/add" class="btn btn-primary fr">增加商品类型</a>
                     </div>
                     <div class="panel-body">
             <!--
@@ -31,7 +31,7 @@
                                                             <img src="/public/admin/images/no.gif" onclick="app.changeStatus(this,'GoodsType','status','<%=list[i]._id%>')" />
                                                     <%}%>
                                             </td>
-                                            <td class="text-center"><a href="/admin/goodsTypeAttribute?id=<%=list[i]._id%>">属性列表</a>　<a href="/admin/goodsType/edit?id=<%=list[i]._id%>">修改</a>　<a  class="delete" href="/admin/delete?model=GoodsType&id=<%=list[i]._id%>">删除</a></td>
+                                            <td class="text-center"><a href="/admin/goodsTypeAttribute?cate_id=<%=list[i]._id%>">属性列表</a>　<a href="/admin/goodsType/edit?id=<%=list[i]._id%>">修改</a>　<a  class="delete" href="/admin/delete?data=GoodsType&_id=<%=list[i]._id%>">删除</a></td>
                                         </tr>
                             <%}%>
                             </tbody>
@@ -39,7 +39,5 @@
                     </div>
                 </div>
             </div>
-
-
 </body>
 </html>

@@ -5,7 +5,6 @@ var app= {
 	init: function() {
 		this.toggleAside();
 		this.deleteConfirm();
-		this.resizeIframe();
 	},
 	deleteConfirm: function() {
 		$('.delete')
@@ -52,7 +51,7 @@ var app= {
 			$(el).html(num);
 			// console.log(model,attr,id)
 			$.get('/admin/editNum',{model:model,attr:attr,id:id,num:num},function(data) {
-				  console.log(data);
+				console.log(data);
 			})
 		})
 	},
@@ -72,6 +71,4 @@ var app= {
 		})
 	}
 };
-$(window).resize(function(){
-	app.resizeIframe();
-});
+
