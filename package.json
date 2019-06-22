@@ -7,10 +7,12 @@
     "declarations": true
   },
   "dependencies": {
-    "egg": "^2.15.1",
+    "egg": "^2.22.2",
     "egg-mongoose": "^3.2.0",
     "egg-scripts": "^2.11.0",
     "egg-view-ejs": "^2.0.0",
+    "jimp": "^0.6.4",
+    "md5": "^2.2.1",
     "silly-datetime": "^0.1.2",
     "svg-captcha": "^1.4.0"
   },

@@ -6,6 +6,7 @@ const md5 = require('md5');
 const path=require('path');
 const sd = require('silly-datetime');
 const mkdirp = require('mz-modules/mkdirp');
+const Jimp = require("jimp");  //生成缩略图的模块
 class ToolsService extends Service {
   async verify() {  /* 生成验证码 */
     const captcha = svgCaptcha.create(
@@ -40,6 +41,21 @@ class ToolsService extends Service {
       /* 保存到数据库的地址 */
       saveDir:uploadDir.slice(3).replace(/\\/g,'/')
     }
+  }
+  //生成缩略图的公共方法
+  async jimpImg(target){
+    //上传图片成功以后生成缩略图
+    Jimp.read(target, (err, lenna) => {
+      if (err) throw err;
+      lenna.resize(200, 200) // resize
+        .quality(90) // set JPEG quality
+        .write(target+'_200x200'+path.extname(target)); // save
+
+
+      lenna.resize(400, 400) // resize
+        .quality(90) // set JPEG quality
+        .write(target+'_400x400'+path.extname(target)); // save
+    });
   }
 }
 module.exports = ToolsService;

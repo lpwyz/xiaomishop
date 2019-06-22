@@ -62,6 +62,12 @@ module.exports = app => {
   router.post('/admin/goodsTypeAttribute/doAdd', controller.admin.goodsTypeAttribute.doAdd);
   router.post('/admin/goodsTypeAttribute/doEdit', controller.admin.goodsTypeAttribute.doEdit);
 
+  //商品分类模块
+  router.get('/admin/goodsCate', controller.admin.goodsCate.index);
+  router.get('/admin/goodsCate/add', controller.admin.goodsCate.add);
+  router.get('/admin/goodsCate/edit', controller.admin.goodsCate.edit);
+  router.post('/admin/goodsCate/doEdit', controller.admin.goodsCate.doEdit);
+  router.post('/admin/goodsCate/doAdd', controller.admin.goodsCate.doAdd);
 
 
 

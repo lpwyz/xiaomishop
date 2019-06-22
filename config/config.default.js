@@ -35,6 +35,10 @@ module.exports = appInfo => {
       options: {}
     },
   };
+  //配置表单数量
+  config.multipart = {
+    fields: '50'
+  };
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
