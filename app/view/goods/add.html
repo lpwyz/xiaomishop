@@ -1,0 +1,171 @@
+<%- include ../public/page_head.html %>
+<!-- 富文本编辑器 -->
+<link href="/public/admin/wysiwyg-editor/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!-- Include Editor style. -->
+<link href="/public/admin/wysiwyg-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/public/admin/wysiwyg-editor/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<!-- 引入jquery -->
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="/public/admin/wysiwyg-editor/js/froala_editor.pkgd.min.js"></script>
+<script type="text/javascript" src="/public/admin/wysiwyg-editor/js/zh_cn.js"></script>
+
+<!-- 批量上传图片插件 -->
+<link rel="stylesheet" type="text/css" href="/public/admin/webuploader/css/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/public/admin/webuploader/css/diyUpload.css">
+<script type="text/javascript" src="/public/admin/webuploader/js/webuploader.html5only.min.js"></script>
+<script type="text/javascript" src="/public/admin/webuploader/js/diyUpload.js"></script>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive input-form">
+                <form action="/admin/goods/doAdd?_csrf=<%=csrf%>" method="post" class="goods_content"  enctype="multipart/form-data">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#general"  role="tab" data-toggle="tab">通用信息</a></li>
+                            <li role="presentation"><a href="#detail" role="tab" data-toggle="tab">详细描述</a></li>
+                            <li role="presentation"><a href="#mix"  role="tab" data-toggle="tab">商品属性</a></li>
+                            <li role="presentation"><a href="#attribute"  role="tab" data-toggle="tab">规格与包装</a></li>
+                            <li role="presentation"><a href="#photo"  role="tab" data-toggle="tab">商品相册</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!--通用信息-->
+                        <div role="tabpanel" class="tab-pane active" id="general">
+                                <ul class="form_input">
+                                        <li> <span> 商品标题:</span> <input type="text" name="title" class="input"/></li>
+                                        <li> <span> 附属标题:</span> <input type="text" name="sub_title" class="input"/></li>
+                                        <li>  <span>商品版本:</span> <input type="text" name="goods_version" class="input"/></li>
+                                        <li>  <span>所属分类:</span>
+                                            <select name="cid" id="cid">
+                                                <%for(var i=0;i<goodsCate.length;i++){%>
+                                                <option  value="<%=goodsCate[i]._id%>"><%=goodsCate[i].title%></option>
+                                                <%for(var j=0;j<goodsCate[i].items.length;j++){%>
+                                                <option style="color: green;text-align: center" value="<%=goodsCate[i].items[j]._id%>">----<%=goodsCate[i].items[j].title%></option>
+                                                <%}%>
+                                                <%}%>
+                                            </select>
+                                            <input type="hidden" name="cname" id="cname" />
+                                        </li>
+                                        <li> <span> 商品图片:</span> <input type="file" name="pic"/></li>
+                                        <li>  <span>商品价格:</span> <input type="text" name="price"/></li>
+                                        <li>  <span>商品原价:</span>  <input type="text" name="old_price"/></li>
+                                        <li>  <span>商品状态:</span>　<input type="radio" value="1" name="status" checked/> 显示                                    　
+                                            <input type="radio" value="0" name="status"/>  隐藏
+                                         </li>
+                                         <li> <span>加入推荐:</span>　<input type="checkbox" value="1" name="is_best"/> 精品
+                                             <input type="checkbox" value="1" name="is_hot"/> 热销
+                                             <input type="checkbox" value="1" name="is_new"/> 新品
+                                         </li>
+                               </ul>
+                        </div>
+                        <!--商品详情-->
+                        <div role="tabpanel" class="tab-pane" id="detail">
+                            <textarea name="content" id="content" cols="100" rows="8"></textarea>
+                        </div>
+                        <!--商品属性-->
+                        <div role="tabpanel" class="tab-pane" id="mix">
+                                <ul class="form_input">
+                                         <li> <span>商品颜色:</span>
+                                             <% for(var i=0;i<colors.length;i++){%>
+                                             <input value="<%=colors[i]._id%>" type="checkbox" name="colors" /><label for="<%=colors[i]._id%>" > <%=colors[i].color_name%></label>
+                                             <% }%>
+                                         </li>
+                                         <li> <span>关联商品:</span>
+                                                <input type="text" name="relation_goods" class="relation_goods"/>  <i>填写关联商品的id 多个以逗号隔开 格式：23,24,39</i>
+                                         </li>
+                                         <li> <span>关联赠品:</span>
+                                                <input type="text" name="goods_gift" class="goods_gift"/>  <i>可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示商品数量</i>
+                                        </li>
+                                        <li> <span>关联配件:</span>
+                                            <input type="text" name="goods_fitting" class="goods_fitting"/>  <i>可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示商品数量</i>
+                                        </li>
+                                        <li> <span>更多属性:</span>
+                                                <input type="text" name="goods_attr" class="goods_attr"/>  <i> 格式:  颜色:红色,白色,黄色 | 尺寸:41,42,43</i>
+                                        </li>
+                                </ul>
+                        </div>
+                        <!--商品的规格与包装-->
+                        <div role="tabpanel" class="tab-pane" id="attribute">
+                            <ul class="form_input">
+                                <li> <span>商品类型:　</span>
+                                    <select name="goods_type_id" id="goods_type_id">
+                                        <option value="0">--请选择商品类型--</option>
+                                        <% for(var i=0;i<goods_types.length;i++){%>
+                                        <option value="<%=goods_types[i]._id%>"><%=goods_types[i].title%></option>
+                                        <%}%>
+                                    </select>
+                                </li>
+                            </ul>
+                            <ul class="form_input" id="goods_type_attribute">
+                            </ul>
+                        </div>
+                        <!--商品相册-->
+                        <div role="tabpanel" class="tab-pane" id="photo">
+                            <div id="photoLib"  class="photoLib"></div>
+                            <div id="photoList">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="_csrf" value="<%=csrf%>">
+                    <button type="submit" class="btn btn-success goods_content_btn">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<script>
+  $(function() {
+    /* 富文本编辑器*/
+    $('#content').froalaEditor({
+      height: 300,    //给编辑器设置默认的高度
+      language: 'zh_cn',
+      imageUploadURL: '/admin/goods/goodsUploadImage',
+      //根据不同的分辨率加载不同的配置
+      toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo'],
+      toolbarButtonsMD: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo'],
+      toolbarButtonsSM: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
+    });
+    /*规格与包装*/
+      $("#goods_type_id").change(function() {
+        const cate_id=$(this).val();
+        $.get('/admin/goods/goodsTypeAttribute?cate_id='+cate_id,function(response) {
+          console.log(response.result);
+          data=response.result;
+          console.log(data.length);
+          var str="";
+          for(var i=0;i<data.length;i++){
+            if(data[i].attr_type==1){
+              str+='<li><span>'+data[i].title+': 　</span><input type="hidden" name="attr_id_list[]" value="'+data[i]._id+'" />  <input type="text" name="attr_value_list[]" /></li>'
+            }else if(data[i].attr_type==2){
+              str+='<li><span>'+data[i].title+': 　</span> <input type="hidden" name="attr_id_list[]" value="'+data[i]._id+'">  <textarea cols="50" rows="3" name="attr_value_list[]"></textarea></li>'
+            }else{
+              var arr=data[i].attr_value.split('\n');
+              str+='<li><span>'+data[i].title+': 　</span><input type="hidden" name="attr_id_list[]" value="'+data[i]._id+'">';
+              str+='<select name="attr_value_list[]">';
+              for(var j=0;j<arr.length;j++){
+                str+='<option value="'+arr[j]+'">'+arr[j]+'</option>';
+              }
+              str+='</select>';
+              str+='</li>';
+            }
+          }
+          $('#goods_type_attribute').html(str);
+        })
+      });
+    //批量上传图片
+    $(function(){
+      var photoStr='';
+      $('#photoLib').diyUpload({
+        url:'/admin/goods/goodsUploadPhoto',
+        success:function( response ) {
+          photoStr='<input type="hidden" name="goods_image_list[]" value='+response.link+' />';
+          $('#photoList').append(photoStr);
+        },
+        error:function( err ) {
+          console.info( err );
+        }
+      });
+    })
+  });
+</script>
+</body>
+</html>

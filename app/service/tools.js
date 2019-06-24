@@ -49,12 +49,10 @@ class ToolsService extends Service {
       if (err) throw err;
       lenna.resize(200, 200) // resize
         .quality(90) // set JPEG quality
-        .write(target+'_200x200'+path.extname(target)); // save
-
-
+        .write(target+'_200*200'+path.extname(target)); // save
       lenna.resize(400, 400) // resize
         .quality(90) // set JPEG quality
-        .write(target+'_400x400'+path.extname(target)); // save
+        .write(target+'_400*400'+path.extname(target)); // save
     });
   }
 }

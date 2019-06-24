@@ -32,7 +32,6 @@ class goodsTypeAttributeController extends Controller {
     async doAdd() {
         const  {ctx}=this;
         const  content=ctx.request.body;
-        console.log(content);
         const  g=new ctx.model.Admin.GoodsTypeAttribute(content);
         g.save();
         await this.success('/admin/goodsTypeAttribute?cate_id='+content.cate_id,'商品分类属性添加成功')

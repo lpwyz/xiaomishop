@@ -13,7 +13,7 @@ module.exports = options => {
       if (auth){
         await  next();
       }else {
-        await  ctx.render('public/no_auth');
+        ctx.body='<h1 style="color: red;font-weight: bold;font-size: 35px;text-align: center">您没有权限访问当前地址</h1>';
     }
     } else {
       /*排除不需要做权限判断的地址*/

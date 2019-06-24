@@ -15,23 +15,23 @@ class FocusController extends Controller {
   }
   async doAdd(){
      const { ctx } = this;
-     //{ autoFields: true }:可以将除了文件的其它字段提取到 parts 的 filed 中*/
-     const parts = ctx.multipart({ autoFields: true });
-     let files = {}; /* 存放到数组，到时候一次性上传多个图片，不方便获取其中的指定的文件保存位置，所以存放到对象*/
-     let stream;
-     while ((stream = await parts()) != null) {
-      if (!stream.filename) {  /* 没有上传图片直接break*/
-          break;
-      }
-       const filename = stream.filename.toLowerCase();
-       const fieldname = stream.fieldname;
-       const dir=await this.service.tools.getFocusAddPath(filename);
-       const writeStream = fs.createWriteStream(dir.uploadDir);
-       await pump(stream, writeStream); /* mz-modules/pump 读取文件输入文件  失败自动帮我们删除*/
-       files=Object.assign(files,{[fieldname]:dir.saveDir});
-       /* 把文件的位置存放到对应的轮播图数据库focus
-           所有表单字段都能通过 `parts.fields` 获取到
-       * */
+       //{ autoFields: true }:可以将除了文件的其它字段提取到 parts 的 filed 中*/
+       const parts = ctx.multipart({ autoFields: true });
+       let files = {}; /* 存放到数组，到时候一次性上传多个图片，不方便获取其中的指定的文件保存位置，所以存放到对象*/
+       let stream;
+       while ((stream = await parts()) != null) {
+         if (!stream.filename) {  /* 没有上传图片直接break*/
+           break;
+         }
+         const filename = stream.filename.toLowerCase();
+         const fieldname = stream.fieldname;
+         const dir=await this.service.tools.getFocusAddPath(filename);
+         const writeStream = fs.createWriteStream(dir.uploadDir);
+         await pump(stream, writeStream); /* mz-modules/pump 读取文件输入文件  失败自动帮我们删除*/
+         files=Object.assign(files,{[fieldname]:dir.saveDir});
+         /* 把文件的位置存放到对应的轮播图数据库focus
+             所有表单字段都能通过 `parts.fields` 获取到
+         * */
        let f=new ctx.model.Admin.Focus(Object.assign(files,parts.field));
        f.save();
      }

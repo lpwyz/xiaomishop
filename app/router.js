@@ -69,6 +69,17 @@ module.exports = app => {
   router.post('/admin/goodsCate/doEdit', controller.admin.goodsCate.doEdit);
   router.post('/admin/goodsCate/doAdd', controller.admin.goodsCate.doAdd);
 
+  //商品模块
+  router.get('/admin/goods', controller.admin.goods.index);
+  router.get('/admin/goods/add', controller.admin.goods.add);
+  /* 商品获取商品类型属性url*/
+  router.get('/admin/goods/goodsTypeAttribute', controller.admin.goods.goodsTypeAttribute);
+  /* 富文本编辑器上传图片的url*/
+  router.post('/admin/goods/goodsUploadImage', controller.admin.goods.goodsUploadImage);
+  router.post('/admin/goods/doAdd', controller.admin.goods.doAdd);
+  /*上传商品信息里面的商品相册*/
+  router.post('/admin/goods/goodsUploadPhoto', controller.admin.goods.goodsUploadPhoto);
+
 
 
 
