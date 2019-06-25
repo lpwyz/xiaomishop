@@ -60,14 +60,14 @@
                         </div>
                         <!--商品详情-->
                         <div role="tabpanel" class="tab-pane" id="detail">
-                            <textarea name="content" id="content" cols="100" rows="8"></textarea>
+                            <textarea name="goods_content" id="content" cols="100" rows="8"></textarea>
                         </div>
                         <!--商品属性-->
                         <div role="tabpanel" class="tab-pane" id="mix">
                                 <ul class="form_input">
                                          <li> <span>商品颜色:</span>
                                              <% for(var i=0;i<colors.length;i++){%>
-                                             <input value="<%=colors[i]._id%>" type="checkbox" name="colors" /><label for="<%=colors[i]._id%>" > <%=colors[i].color_name%></label>
+                                             <input value="<%=colors[i]._id%>" type="checkbox" name="goods_colors" /><label for="<%=colors[i]._id%>" > <%=colors[i].color_name%></label>
                                              <% }%>
                                          </li>
                                          <li> <span>关联商品:</span>
@@ -134,13 +134,13 @@
           var str="";
           for(var i=0;i<data.length;i++){
             if(data[i].attr_type==1){
-              str+='<li><span>'+data[i].title+': 　</span><input type="hidden" name="attr_id_list[]" value="'+data[i]._id+'" />  <input type="text" name="attr_value_list[]" /></li>'
+              str+='<li><span>'+data[i].title+': 　</span><input type="hidden" name="attr_id_list" value="'+data[i]._id+'" />  <input type="text" name="attr_value_list" /></li>'
             }else if(data[i].attr_type==2){
-              str+='<li><span>'+data[i].title+': 　</span> <input type="hidden" name="attr_id_list[]" value="'+data[i]._id+'">  <textarea cols="50" rows="3" name="attr_value_list[]"></textarea></li>'
+              str+='<li><span>'+data[i].title+': 　</span> <input type="hidden" name="attr_id_list" value="'+data[i]._id+'">  <textarea cols="50" rows="3" name="attr_value_list"></textarea></li>'
             }else{
               var arr=data[i].attr_value.split('\n');
-              str+='<li><span>'+data[i].title+': 　</span><input type="hidden" name="attr_id_list[]" value="'+data[i]._id+'">';
-              str+='<select name="attr_value_list[]">';
+              str+='<li><span>'+data[i].title+': 　</span><input type="hidden" name="attr_id_list" value="'+data[i]._id+'">';
+              str+='<select name="attr_value_list">';
               for(var j=0;j<arr.length;j++){
                 str+='<option value="'+arr[j]+'">'+arr[j]+'</option>';
               }
@@ -157,7 +157,7 @@
       $('#photoLib').diyUpload({
         url:'/admin/goods/goodsUploadPhoto',
         success:function( response ) {
-          photoStr='<input type="hidden" name="goods_image_list[]" value='+response.link+' />';
+          photoStr='<input type="hidden" name="goods_image_list" value='+response.link+' />';
           $('#photoList').append(photoStr);
         },
         error:function( err ) {
