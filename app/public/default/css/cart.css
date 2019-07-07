@@ -1,0 +1,69 @@
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}	
+
+.table th {
+    background: #EEEEEE;
+    height: 60px;
+    border: 1px solid #ddd;
+}
+
+.table td{
+
+    height:100px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table td .col_pic{
+    width:60px;
+    height: 80px;
+
+    line-height: 80px;
+    float: left;
+}
+.table td .col_pic img{	
+    width: 60px;
+}
+
+.table td .col_title{					
+    float: left;
+    margin-left: 60px;
+    height: 80px;
+    line-height: 80px;
+
+}
+
+
+.cart_number {
+    width: 120px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 auto;
+}
+
+.cart_number .input_left,.cart_number .input_right {
+    
+    width: 80px;
+    height:36px;
+    line-height: 36px;
+    text-align: center;
+    background: #f8f8f8;
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+
+}
+    
+
+.cart_number .input_center input {
+    border: 1px solid #f8f8f8;
+    height: 36px;
+    line-height: 36px;
+    width: 100%;
+    text-align: center;
+}

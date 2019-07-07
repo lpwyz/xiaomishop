@@ -3,9 +3,12 @@ web框架采用的是当前node社区流行的koa框架的加强版，阿里开�
 感兴趣的朋友可以把ejs，改成当下流行的vue,react或者angular哦。
 项目的功能列表在项目的：
 app/public/admin/egg_project
-##项目截图
-管理员登入页面:
-     ![Image text] (https://raw.github.com/lpwyz/xiaomishop/master/xiaomishop/project_demo/login.png)
+## 项目截图
+项目目前截图：
+     ![Image] (https://github.com/lpwyz/xiaomishop/raw/master/project_demo/login.png)
+     ![Image] (https://github.com/lpwyz/xiaomishop/raw/master/project_demo/error_code.png)
+     ![Image] (https://github.com/lpwyz/xiaomishop/raw/master/project_demo/error_code.png)
+     ![Image] (https://github.com/lpwyz/xiaomishop/raw/master/project_demo/welcome.png)
 ## 启动项目
 1：下载源码到idea工具，如Webstorm
 2: 安装package.json对应的依赖模块

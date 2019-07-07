@@ -14,7 +14,7 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = ['adminauth'];
   config.adminauth={
-     match: '/admin',   /* 指定路由的中间件 */
+    match: '/admin',   /* 指定路由的中间件 */
   };
   config.uploadDir='app/public/admin/upload/';
   config.session={
@@ -43,7 +43,7 @@ module.exports = appInfo => {
     csrf: {
       // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
       ignore: ctx => {
-        if(ctx.request.url=='/admin/goods/goodsUploadImage'||ctx.request.url=='/admin/goods/goodsUploadPhoto'){
+        if(ctx.request.url=='/admin/goods/goodsUploadImage'||ctx.request.url=='/admin/goods/goodsUploadPhoto'||ctx.request.url=='/pass/register_step3.html'||ctx.request.url=='/pass/doRegister'){
           return true;
         }
         return false;

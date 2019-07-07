@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="author" content="order by dede58.com"/>
+		<title>用户注册</title>
+		<link rel="stylesheet" href="/public/default/css/login.css" />
+		<script src="/public/default/js/jquery-1.10.1.js"></script>
+	</head>
+	<body class="register_page">
+			<div class="regist">
+				<div class="regist_center">
+					<div class="logo">
+							<img src="/public/default/image/logo_top.png" alt="egg小米">
+					</div>
+					<div class="regist_top">
+							<h2>注册小米账户</h2>
+					</div>
+					<div class="regist_main center">
+						<input class="form_input" type="text" name="phone" id="phone" placeholder="请填写正确的手机号"/>
+						<div class="yzm">
+							<input type="text" id="identify_code" name="identify_code" placeholder="请输入验证码"/>
+							<img src="/verify"  title="看不清？点击刷新" onclick="javascript:this.src='/verify?mt='+Math.random()">
+						</div>
+						<div class="regist_submit">
+								<button  class="submit" id="registerButton">
+										立即注册
+								</button>
+						</div>
+						<br>
+						<br>
+						<div class="privacy_box">
+							<div class="msg">
+							<label class="n_checked now select-privacy">
+								<input type="checkbox" checked="true" /> 注册帐号即表示您同意并愿意遵守Egg仿小米 <a href="https://static.account.xiaomi.com/html/agreement/account/cn.html" class="inspect_link " title="用户协议" target="_blank">用户协议</a>和<a href="https://www.mi.com/about/privacy/" class="inspect_link privacy_link" title=" 隐私政策 " target="_blank"> 隐私政策 </a>
+							</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script>
+				$(function(){
+					$("#registerButton").click(function(e){
+						var phone=$('#phone').val();
+						var identify_code= $('#identify_code').val();
+						var reg =/^[\d]{11}$/;
+						if(!reg.test(phone)){
+							alert('手机号输入错误');
+							return false;
+						}
+						if(identify_code.length<4){
+							alert('验证码长度不合法');
+							return false;
+						}
+						$.get('/pass/sendCode',{phone:phone,identify_code:identify_code},function(response){
+								console.log(response);
+								if(response.success==true){
+									location.href="/register/registerStep2?sign="+response.sign+'&identify_code='+identify_code;
+								}else{
+									alert(response.msg);
+								}
+						})
+					})
+				})
+			</script>
+	</body>
+</html>

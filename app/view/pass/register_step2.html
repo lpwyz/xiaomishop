@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="author" content="order by dede58.com"/>
+		<title>用户注册</title>
+		<link rel="stylesheet" href="/public/default/css/login.css" />
+		<script src="/public/default/js/jquery-1.10.1.js"></script>
+	</head>
+	<body class="register_page">
+			<div class="regist">
+				<div class="regist_center">
+					<div class="logo">
+							<img src="/public/default/image/logo_top.png" alt="egg小米">
+					</div>
+					<div class="regist_top">
+							<h2>注册小米账户</h2>
+					</div>
+					<div class="regist_main center">
+						<p>验证码已通过短信发送至*****，请输入完成验证。手机绑定是为保障用户的信息真实性和帐号安全性</p>
+						<br>
+						<br>
+							<div class="yzm">
+								<input type="hidden" id="identify_code" name="identify_code" value="<%=identify_code%>"/>
+								<input type="hidden" id="phone" name="phone" value="<%=phone%>"/>
+								<input type="hidden" id="sign" name="sign" value="<%=sign%>"/>
+								<input type="text" id="phone_code" name="phone_code" placeholder="请输入验证码"/>
+								<button id="sendCode">重新发送</button>
+							</div>
+							<div class="regist_submit">
+									<input class="submit" id="nextStep" type="button" name="submit" value="下一步" >
+									<br>
+									<input class="return" id="returnButton" type="button" name="return" value="返回" >
+							</div>
+					</div>
+					<script>
+						$(function(){
+							var timer =20;
+							function Countdown() {
+								if (timer >= 1) {
+									timer -= 1;
+									$("#sendCode").attr('disabled',true);
+									$("#sendCode").html('重新发送('+timer+')');
+									setTimeout(function() {
+										Countdown();
+									}, 1000);
+								}else{
+									$("#sendCode").attr('disabled',false);
+									$("#sendCode").html('重新发送');
+								}
+							}
+							Countdown();
+							//验证验证码
+							$("#nextStep").click(function(e){
+								var sign=$('#sign').val();
+								var phone_code= $('#phone_code').val();
+								$.get('/pass/validatePhoneCode',{sign:sign,phone_code:phone_code},function(response){
+									console.log(response);
+									if(response.success==true){
+										location.href="/register/registerStep3?sign="+response.sign;
+									}else{
+										alert(response.msg);
+									}
+								})
+							});
+
+							//重新发送验证码
+							$("#sendCode").click(function(){
+								Countdown();
+								var phone=$('#phone').val();
+								var identify_code=$('#identify_code').val();
+								$.get('/pass/sendCode',{phone:phone,identify_code:identify_code},function(response){
+									console.log(response);
+									if(response.success==true){
+									}else{
+										alert(response.msg);
+									}
+								})
+							})
+						})
+					</script>
+				</div>
+			</div>
+	</body>
+</html>

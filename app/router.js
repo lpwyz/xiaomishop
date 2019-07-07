@@ -81,6 +81,9 @@ module.exports = app => {
   router.post('/admin/goods/goodsUploadPhoto', controller.admin.goods.goodsUploadPhoto);
 
 
+  require('./router/default')(app);
+
+
 
 
 

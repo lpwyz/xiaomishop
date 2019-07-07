@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="order by dede58.com"/>
+	<title>用户注册</title>
+	<link rel="stylesheet" href="/public/default/css/login.css" />
+	<script src="/public/default/js/jquery-1.10.1.js"></script>
+</head>
+<body class="register_page">
+<div class="regist">
+	<div class="regist_center">
+		<div class="logo">
+			<img src="/public/default/image/logo_top.png" alt="egg小米">
+		</div>
+		<div class="regist_top">
+			<h2>注册小米账户</h2>
+		</div>
+		<div class="regist_main center">
+			<p>请输入您注册账户的密码</p>
+			<br>
+			<br>
+			<form action="/pass/doRegister" method="post" id="form">
+				<input type="hidden" name="sign" value="<%=sign%>" />
+				<input type="hidden" name="phone_code"  value="<%=phone_code%>"/>
+				<div>
+					<input class="form_input" type="password" id="password" name="password" placeholder="请输入密码"/>
+				</div>
+				<div>
+					<input class="form_input" type="password" id="rpassword" name="rpassword" placeholder="请输入确认密码"/>
+				</div>
+				<%if(msg){%>
+				<p style="color:red"><%=msg%></p>
+				<%}%>
+				<div class="regist_submit">
+					<input class="submit" id="nextStep" type="submit" name="submit" value="下一步" >
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+	$(function(){
+		$("#form").submit(function(){
+			var password=$('#password').val();
+			var rpassword=$('#rpassword').val();
+			if(password.length<6){
+				alert('用户名的长度不能小于6位');
+				return false;
+			}
+			if(password!=rpassword){
+				alert('密码和确认密码不一致');
+				return false;
+			}
+			return true;
+		})
+	})
+</script>
+</body>
+</html>

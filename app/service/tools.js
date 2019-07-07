@@ -17,8 +17,25 @@ class ToolsService extends Service {
         height:40,
         background: "#cc9966"
       });
-    this.ctx.session.code=captcha.text;  /* 验证码上面的信息,文字内容存放到session里面 */
     return  captcha;
+  }
+  /*生成随机的4位数字*/
+  async getRandomNum(){
+      let num='';
+      for(var i=0;i<4;i++){
+        num+=Math.floor(Math.random()*10)
+      }
+      return num;
+    }
+  /*生成当年当月当天的数字*/
+  async getDay(){
+    const day=sd.format(new Date(), 'YYYYMMDD');
+    return day;
+  }
+  /* 生成当前时间*/
+  async getTime(){
+     var date=new Date();
+     return date.getTime();
   }
   async md5(string){   /* 封装一个md5加密*/
         return  md5(string);
@@ -55,6 +72,7 @@ class ToolsService extends Service {
         .write(target+'_400*400'+path.extname(target)); // save
     });
   }
+
 }
 module.exports = ToolsService;
 

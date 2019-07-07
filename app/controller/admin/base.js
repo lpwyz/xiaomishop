@@ -46,6 +46,7 @@ class BaseController extends Controller {
   async verify() {
     const { ctx,service } = this;
     const captcha=await service.tools.verify(); /* 获取服务里面返回的生成的验证码信息 */
+    this.ctx.session.code=captcha.text;  /* 验证码上面的信息,文字内容存放到session里面 */
     ctx.response.type = 'image/svg+xml';  /* 返回的生成的验证码的格式 */
     ctx.body=captcha.data;  /* 给页面返回一张图片 */
   }
