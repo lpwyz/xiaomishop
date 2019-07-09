@@ -1,0 +1,84 @@
+<%- include ../public/page_head.html %>
+            <div class="panel panel-default">
+                    <div class="panel-heading clear">
+                        <span>商品分类列表</span> <a href="/admin/goodsCate/add" class="btn btn-primary fr">增加商品分类</a>
+                    </div>
+                    <div class="panel-body">
+            <!--
+                列表展示
+            -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr class="th">
+                                <th>分类名称</th>
+                                <th>分类图片</th>
+                                <th class="text-center">排序</th>
+                                <th class="text-center">状态</th>
+
+                                <th class="text-center">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                    <%for(var i=0;i<list.length;i++){%>
+                                            <tr>
+                                                    <td><%=list[i].title%></td>
+
+
+                                                    <td><img class="pic" src="<%=list[i].cate_img%>" /></td>
+
+
+                                                    <td class="text-center"><span onclick="app.editNum(this,'GoodsCate','sort','<%=list[i]._id%>')"><%=list[i].sort%></span></td>
+                                                    <td class="text-center">
+
+                                                        <%if(list[i].status==1){%>
+
+                                                                <img src="/public/admin/images/yes.gif" onclick="app.changeStatus(this,'GoodsCate','status','<%=list[i]._id%>')" />
+
+                                                        <%}else{%>
+                                                                <img src="/public/admin/images/no.gif" onclick="app.changeStatus(this,'GoodsCate','status','<%=list[i]._id%>')" />
+                                                        <%}%>
+
+                                                    </td>
+                                                    <td class="text-center">　<a href="/admin/goodsCate/edit?id=<%=list[i]._id%>">修改</a>　<a class="delete" href="/admin/delete?model=GoodsCate&id=<%=list[i]._id%>">删除</a></td>
+                                                </tr>
+
+
+                                                <%for(var j=0;j<list[i].items.length;j++){%>
+                                                        <tr>
+                                                                <td>-----<%=list[i].items[j].title%></td>
+
+
+                                                                <td><img class="pic" src="<%=list[i].items[j].cate_img%>" /></td>
+
+
+                                                                <td class="text-center"><span onclick="app.editNum(this,'GoodsCate','sort','<%=list[i].items[j]._id%>')"><%=list[i].items[j].sort%></span></td>
+                                                                <td class="text-center">
+
+                                                                    <%if(list[i].status==1){%>
+
+                                                                            <img src="/public/admin/images/yes.gif" onclick="app.changeStatus(this,'GoodsCate','status','<%=list[i].items[j]._id%>')" />
+
+                                                                    <%}else{%>
+                                                                            <img src="/public/admin/images/no.gif" onclick="app.changeStatus(this,'GoodsCate','status','<%=list[i].items[j]._id%>')" />
+                                                                    <%}%>
+
+                                                                </td>
+                                                                <td class="text-center">　<a href="/admin/goodsCate/edit?id=<%=list[i].items[j]._id%>">修改</a>　<a class="delete" href="/admin/delete?model=GoodsCate&id=<%=list[i].items[j]._id%>">删除</a></td>
+                                                            </tr>
+
+
+                                                <%}%>
+
+
+                                    <%}%>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+</body>
+</html>

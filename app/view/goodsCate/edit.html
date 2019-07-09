@@ -1,0 +1,72 @@
+<%- include ../public/page_head.html %>
+
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            编辑商品分类
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive input-form">
+                <form action="/admin/goodsCate/doEdit?_csrf=<%=csrf%>" method="post" enctype="multipart/form-data">
+                    <ul class="form_input">
+
+                            <input type="hidden" name="id" value="<%=list._id%>" />
+
+                            <li>  <span>分类名称:</span> <input type="text" name="title" class="input" value="<%=list.title%>"/></li>
+
+                            <li>  <span>上级分类:</span>
+                                <select name="pid" id="pid">
+                                    <option value="0">顶级分类</option>
+
+                                    <%for(var i=0;i<cateList.length;i++){%>
+                                            <option value="<%=cateList[i]._id%>" <%if(cateList[i]._id.toString()==list.pid){%> selected <%}%>><%=cateList[i].title%></option>
+                                    <%}%>
+                                </select>
+                            </li>
+
+                            <li> <span>分类图片:</span>  <input type="file" name="cate_img"/>
+
+                                    <br />
+
+                                    <span> </span> <img class="pic" src="<%=list.cate_img%>" />
+                            </li>
+
+
+                            <li> <span>筛选属性:</span> <input type="text" name="filter_attr" class="input" value="<%=list.filter_attr%>"/></li>
+
+
+                            <li>  <span>跳转地址:</span>  <input type="text" name="link" class="input" value="<%=list.link%>" /></li>
+
+                            <li>  <span>分类模板:</span> <input type="text" name="template" class="input" value="<%=list.template%>" /><span>空表示默认模板</span></li>
+
+                            <li>  <span>Seo标题:</span> <input type="text" name="sub_title" class="input" value="<%=list.sub_title%>"/></li>
+
+                            <li>  <span>Seo关键词: </span><input type="text" name="keywords" class="input" value="<%=list.keywords%>"/></li>
+
+                            <li>  <span>Seo描述:</span> <textarea name="description" id="description" cols="84" rows="4"><%=list.description%></textarea></li>
+
+                            <li>  <span>排　　序:</span> <input type="text" name="sort" value="<%=list.sort%>"/></li>
+
+
+                            <li>  <span>状　　态:</span> <input type="radio" name="status" <%if(list.status==1){%> checked <%}%> value="1" id="a"/> <label for="a">显示</label>    <input type="radio"  <%if(list.status==0){%> checked <%}%>  name="status" value="0" id="b"/><label for="b">隐藏</label> 　</li>
+
+
+                            <li>
+                                <br/>
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </li>
+
+                    </ul>
+
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<%- include ../public/page_head.html %>
+<div class="container-fluid">
+            <div class="panel panel-default">
+			    <div class="panel-heading">
+                  修改轮播图
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive input-form">
+                        <form action="/admin/focus/doEdit?_csrf=<%=csrf%>" method="post" enctype="multipart/form-data">
+                            <ul>
+                                 <input type="hidden" name="_id" value="<%=list._id%>">
+                                <li>  分　　类:
+                                    <select name="type" id="type">
+                                        <option value="1"  <%if(list.type==1){%> selected <%}%> >网站</option>
+                                        <option value="2"  <%if(list.type==2){%> selected <%}%>>APP</option>
+                                        <option value="3"  <%if(list.type==3){%> selected <%}%>>小程序</option>
+                                    </select>
+                                </li>
+                                <li>  名　　称: <input type="text" name="title" value="<%=list.title%>"/></li>
+                                <li>  跳转地址: <input type="text" name="link" value="<%=list.link%>"/></li>
+                                <li>  轮 播 图: <input type="file" name="focus_img"/>
+                                     <br/>
+                                     <img src="<%=list.focus_img%>" style="width: 120px">
+                                </li>
+<!--                                <li>  轮 播 图: <input type="file" name="focus_img"/></li>-->
+<!--                                <li>  轮 播 图: <input type="file" name="focus_img"/></li>-->
+                                <li>  排　　序: <input type="text" name="sort" value="1000" value="<%=list.sort%>"/></li>
+                                <li>  状　　态: <input type="radio" name="status" <% if(list.status==1){%> checked <%}%> value="1" id="a"/> <label for="a">显示</label> <input <% if(list.status==0){%> checked <%}%> type="radio" name="status" value="0" id="b"/><label for="b">隐藏</label> 　</li>
+                                <li>
+                                    <br/>
+                                    <button type="submit" class="btn btn-primary">提交</button>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
